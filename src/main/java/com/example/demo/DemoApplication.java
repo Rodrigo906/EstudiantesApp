@@ -62,7 +62,7 @@ public class DemoApplication {
 			estudianteRepository.save(estudiante6);
 
 			Curso curso = new Curso(null, "Desarrollo backend", "",
-					LocalDate.of(2023, 7, 1), LocalDate.of(2023, 8, 1));
+					LocalDate.of(2020, 3, 1), LocalDate.of(2020, 6, 30));
 			curso = cursoRepository.saveAndFlush(curso);
 
 			Inscripcion inscripcion = new Inscripcion(null, curso, Estado.ACEPTADA,
@@ -78,15 +78,13 @@ public class DemoApplication {
 			estudianteRepository.findAll();
 			estudianteRepository.findByDniGreaterThanAndApellido(20000000, "Romero");
 			inscripcionRepository.findByEstadoIn(List.of(Estado.RECHAZADA, Estado.PENDIENTE));
-			cursoRepository.cursosIniciadosDespuesDe(LocalDate.of(2023, 6, 1));
+			cursoRepository.cursosIniciadosDespuesDe(LocalDate.of(2020, 2, 1));
 			inscripcionRepository.listarPorEstadoJpql(Estado.ACEPTADA);
 			inscripcionRepository.listarPorEstadoNativa(Estado.PENDIENTE.name());
 			estudianteRepository.findByOrderByDniAsc(PageRequest.of(1, 5));
 			estudianteRepository.findByOrderByDniAsc(PageRequest.of(0, 2));
 
 			inscripcionService.registrarInscripcion(1L, 1L);
-
-			System.out.println("Algo");
 		};
 	}
 }
