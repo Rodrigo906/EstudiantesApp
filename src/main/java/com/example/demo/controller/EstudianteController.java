@@ -2,10 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.EstudianteDTO;
 import com.example.demo.service.port.EstudianteService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,17 +24,17 @@ public class EstudianteController {
     }
 
     @GetMapping("/{id}")
-    public EstudianteDTO obtenerEstudiante(@PathParam("id") Long id){
+    public EstudianteDTO obtenerEstudiante(@PathVariable Long id){
         return estudianteService.find(id);
     }
 
     @PutMapping("/{id}")
-    public EstudianteDTO actualizarEstudiante(@RequestBody EstudianteDTO estudianteDTO, @PathParam("id") Long id){
+    public EstudianteDTO actualizarEstudiante(@RequestBody EstudianteDTO estudianteDTO, @PathVariable Long id){
         return estudianteService.update(estudianteDTO, id);
     }
 
     @DeleteMapping("{id}")
-    public void eliminarEstudiante(@PathParam("id") Long id){
+    public void eliminarEstudiante(@PathVariable Long id){
         estudianteService.delete(id);
     }
 
