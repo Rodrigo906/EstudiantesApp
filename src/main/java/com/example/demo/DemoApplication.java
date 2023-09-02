@@ -44,15 +44,15 @@ public class DemoApplication {
 			Estudiante estudiante1 = new Estudiante(null, 41478211, "rodrigo@gmail.com",
 					LocalDate.of(1999, 7, 11), "Rodrigo", "Calizaya", 24);
 			Estudiante estudiante2 = new Estudiante(null, 45467211, "lucas@gmail.com",
-					LocalDate.of(2002, 5, 12), "Lucas", "Romero", 21);
+					LocalDate.of(2002, 2, 13), "Lucas", "Romero", 21);
 			Estudiante estudiante3 = new Estudiante(null, 45832211, "pedro@gmail.com",
-					LocalDate.of(2002, 5, 12), "Pedro", "Lopez", 25);
+					LocalDate.of(2003, 4, 26), "Pedro", "Lopez", 20);
 			Estudiante estudiante4 = new Estudiante(null, 46366212, "lucia@gmail.com",
-					LocalDate.of(2002, 5, 12), "Lucia", "Rodriguez", 27);
+					LocalDate.of(2004, 1, 30), "Lucia", "Rodriguez", 19);
 			Estudiante estudiante5 = new Estudiante(null, 48468413, "maria@gmail.com",
-					LocalDate.of(2002, 5, 12), "Maria", "Suarez", 30);
+					LocalDate.of(2005, 7, 19), "Maria", "Suarez", 18);
 			Estudiante estudiante6 = new Estudiante(null, 40437219, "Luis@gmail.com",
-					LocalDate.of(2002, 5, 12), "Luis", "Romero", 35);
+					LocalDate.of(2006, 9, 15), "Luis", "Romero", 17);
 
 			estudiante1 = estudianteRepository.saveAndFlush(estudiante1);
 			estudiante2 = estudianteRepository.saveAndFlush(estudiante2);
@@ -61,17 +61,25 @@ public class DemoApplication {
 			estudianteRepository.save(estudiante5);
 			estudianteRepository.save(estudiante6);
 
-			Curso curso = new Curso(null, "Desarrollo backend", "",
+			Curso curso = new Curso(null, "Proyecto de software", "",
 					LocalDate.of(2020, 3, 1), LocalDate.of(2020, 6, 30));
+
+			Curso curso2 = new Curso(null, "Curso react", "",
+					LocalDate.of(2020, 1, 1), LocalDate.of(2020, 4, 30));
+
 			curso = cursoRepository.saveAndFlush(curso);
+			cursoRepository.save(curso2);
 
 			Inscripcion inscripcion = new Inscripcion(null, curso, Estado.ACEPTADA,
 					LocalDate.of(2023,7, 2), estudiante1);
 			Inscripcion inscripcion2 = new Inscripcion(null, curso, Estado.PENDIENTE,
 					LocalDate.of(2023,7, 3), estudiante2);
+			Inscripcion inscripcion3 = new Inscripcion(null, curso, Estado.RECHAZADA,
+					LocalDate.of(2023,7, 4), estudiante2);
 
 			inscripcionRepository.save(inscripcion);
 			inscripcionRepository.save(inscripcion2);
+			inscripcionRepository.save(inscripcion3);
 
 			//Consultas
             cursoRepository.findAll();
@@ -83,8 +91,6 @@ public class DemoApplication {
 			inscripcionRepository.listarPorEstadoNativa(Estado.PENDIENTE.name());
 			estudianteRepository.findByOrderByDniAsc(PageRequest.of(1, 5));
 			estudianteRepository.findByOrderByDniAsc(PageRequest.of(0, 2));
-
-			inscripcionService.registrarInscripcion(1L, 1L);
 		};
 	}
 }
