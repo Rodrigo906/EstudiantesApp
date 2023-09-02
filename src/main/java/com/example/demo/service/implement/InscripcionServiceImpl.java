@@ -40,7 +40,6 @@ public class InscripcionServiceImpl implements InscripcionService {
                 .findById(idCurso)
                 .orElseThrow(() -> new RuntimeException("El id del curso no es valido"));
 
-        //En que casos tomaria el estado RECHAZADA o PENDIENTE
         Inscripcion inscripcion = new Inscripcion(null, curso, Estado.ACEPTADA, LocalDate.now(), estudiante);
         inscripcionRepository.save(inscripcion);
     }

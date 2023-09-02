@@ -7,6 +7,5 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public interface InscripcionService {
 
-    void registrarInscripcion(@NotNull @Positive Long idEstudiante,
-                              @NotNull @Positive Long idCurso);
+    void registrarInscripcion(@NotNull @Positive Long idEstudiante, @NotNull @Positive Long idCurso);
 }
